@@ -1,7 +1,20 @@
-.likes {
-  float: left;
-}
+.welcome {
+  .likes {
+    width: 20%;
+    float: left;
+  }
 
-.dislikes{
-  float: right;
+  .choices {
+    float: left;
+    text-align: center;
+    width: 60%;
+
+    .choice {
+    }
+  }
+
+  .dislikes{
+    width: 20%;
+    float: left;
+  }
 }

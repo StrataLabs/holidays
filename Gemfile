@@ -15,6 +15,7 @@ gem 'jquery-rails'
 gem 'settingslogic'
 gem 'bson_ext'
 gem "mongoid"
+gem 'haml'
 
 group :test, :development do
   gem "rspec-rails", "~> 2.6"

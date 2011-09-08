@@ -1,3 +1,4 @@
-class Strata.Foo
-  constructor: ->
-    alert(1)
+Strata.Welcome = {}
+
+class Strata.Welcome.ChoiceSelector
+

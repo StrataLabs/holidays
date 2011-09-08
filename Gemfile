@@ -19,6 +19,7 @@ group :test, :development do
   gem 'spork'
   gem "rspec-rails", "~> 2.6"
   gem "factory_girl_rails"
+  gem "rb-fsevent"
   gem "guard-coffeescript"
   gem "jasmine"
 end

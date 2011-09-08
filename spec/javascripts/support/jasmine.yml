@@ -1,5 +1,6 @@
 src_files:
-  - '**/*.js'
+  - spec/javascripts/compiled/lib/global.js
+  - spec/javascripts/compiled/lib/**/*.js
 
 # stylesheets
 #
@@ -29,8 +30,8 @@ helpers:
   - helpers/**/*.js
 
 spec_files:
-  - '**/*[sS]pec.js'
+  - compiled/spec/**/*[sS]pec.js
 
-src_dir: spec/javascripts/compiled/lib
+src_dir:
 
-spec_dir: spec/javascripts/compiled/spec
+spec_dir: spec/javascripts

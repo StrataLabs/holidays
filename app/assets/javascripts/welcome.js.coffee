@@ -1,4 +1,6 @@
-Strata.Welcome = {}
+class ChoiceSelector
+  constructor: ->
 
-class Strata.Welcome.ChoiceSelector
-
+Strata.Welcome =
+  bootstrap: ->
+    new ChoiceSelector()

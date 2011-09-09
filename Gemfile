@@ -22,6 +22,7 @@ group :test, :development do
   gem "rb-fsevent"
   gem "guard-coffeescript"
   gem "jasmine"
+  gem "headless"
 end
 
 # Use unicorn as the web server

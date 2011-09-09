@@ -17,6 +17,7 @@ gem 'haml'
 
 group :test, :development do
   gem 'spork'
+  gem "cover_me"
   gem "rspec-rails", "~> 2.6"
   gem "factory_girl_rails"
   gem "rb-fsevent"

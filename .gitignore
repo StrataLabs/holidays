@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 /bin
 /spec/javascripts/compiled
+/coverage
+coverage.data

@@ -1,5 +1,6 @@
 CoverMe.config do |c|
   c.at_exit = Proc.new {}
+  c.formatter = CoverMe::EmmaFormatter
 end
 
 namespace :cover_me do

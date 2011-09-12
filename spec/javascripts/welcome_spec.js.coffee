@@ -13,3 +13,9 @@ describe 'Welcome', ->
       $(".choices .tag a.dislike").click()
       expect($(".dislikes .tag .tagText")).toHaveText("Travel")
       expect($(".choices .tag")).not.toExist()
+
+    it "should move a tag back to choices when remove is clicked on a liked tag", ->
+      $(".choices .tag a.like").click()
+      $(".likes .tag a.remove").click()
+      expect($(".choices .tag .tagText")).toHaveText("Travel")
+      expect($(".likes .tag")).not.toExist()

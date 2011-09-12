@@ -24,18 +24,18 @@ describe 'Welcome', ->
     it "should create inquiry with neutral responses", ->
       Strata.Welcome.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
-      expect(form.find("select[name=neutral]").val()).toEqual(["Travel", "Fun"])
+      expect(form.find("select[name='neutral[]']").val()).toEqual(["Travel", "Fun"])
 
     it "should create inquiry with like responses", ->
       $(".neutral .tag:first a.like").click()
       Strata.Welcome.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
-      expect(form.find("select[name=likes]").val()).toEqual(["Travel"])
-      expect(form.find("select[name=neutral]").val()).toEqual(["Fun"])
+      expect(form.find("select[name='likes[]']").val()).toEqual(["Travel"])
+      expect(form.find("select[name='neutral[]']").val()).toEqual(["Fun"])
 
     it "should create inquiry with disike responses", ->
       $(".neutral .tag:first a.dislike").click()
       Strata.Welcome.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
-      expect(form.find("select[name=dislikes]").val()).toEqual(["Travel"])
-      expect(form.find("select[name=neutral]").val()).toEqual(["Fun"])
+      expect(form.find("select[name='dislikes[]']").val()).toEqual(["Travel"])
+      expect(form.find("select[name='neutral[]']").val()).toEqual(["Fun"])

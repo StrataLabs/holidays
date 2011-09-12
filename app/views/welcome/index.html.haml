@@ -1,7 +1,7 @@
 .welcome
   .likes
     %ul.tags
-  .choices
+  .neutral
     %ul.tags
       %li.tag
         %a.like like
@@ -20,6 +20,9 @@
         %a.remove remove
   .dislikes
     %ul.tags
+  %form{method: "post", action: inquiries_path, id: "createInquiry"}
+  .submit
+    Create
 :javascript
   $(document).ready(function() {
     Strata.Welcome.bootstrap();

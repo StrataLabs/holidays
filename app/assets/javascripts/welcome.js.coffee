@@ -19,9 +19,9 @@ class ChoiceSelector
 
   createSelectBoxWith: (name) ->
     elements = ($(x).find(".tagText").text() for x in $(".welcome .#{name} .tag"))
-    selectBox = $("<select name='#{name}' multiple></select>")
+    selectBox = $("<select name='#{name}[]' multiple></select>")
     for option in elements
-      selectBox.append($("<option selected='selected' value='#{option}'></option>"))
+      selectBox.append($("<option selected='selected' value='#{option}'>#{option}</option>"))
     selectBox
 
   submit: (e) ->

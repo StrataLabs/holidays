@@ -1,24 +1,41 @@
 class ChoiceSelector
-  getTag: (event) ->
-    $(event.target).parents("li")
+  moveElementTo: (container, event) ->
+    choice = $(event.target).parents("li")
+    $(".welcome .#{container} .tags").append(choice)
 
   likeElement: (e) ->
-    choice = this.getTag e
-    $(".likes .tags").append(choice)
+    this.moveElementTo("likes", e)
 
   dislikeElement: (e) ->
-    choice = this.getTag e
-    $(".dislikes .tags").append(choice)
+    this.moveElementTo("dislikes", e)
 
-  ambivalentElement: (e) ->
-    choice = this.getTag e
-    $(".choices .tags").append(choice)
+  neutralElement: (e) ->
+    this.moveElementTo("neutral", e)
+
+  prepareForSubmitting: ->
+    $(".welcome #createInquiry").append(this.createSelectBoxWith("neutral"))
+    $(".welcome #createInquiry").append(this.createSelectBoxWith("likes"))
+    $(".welcome #createInquiry").append(this.createSelectBoxWith("dislikes"))
+
+  createSelectBoxWith: (name) ->
+    elements = ($(x).find(".tagText").text() for x in $(".welcome .#{name} .tag"))
+    selectBox = $("<select name='#{name}' multiple></select>")
+    for option in elements
+      selectBox.append($("<option selected='selected' value='#{option}'></option>"))
+    selectBox
+
+  submit: (e) ->
+    this.prepareForSubmitting()
+    $(".welcome #createInquiry").submit()
 
   constructor: ->
-    $(".tag .like").click (e) => this.likeElement(e)
-    $(".tag .dislike").click (e) => this.dislikeElement(e)
-    $(".tag .remove").click (e) => this.ambivalentElement(e)
+    $(".welcome .tag .like").click (e) => this.likeElement(e)
+    $(".welcome .tag .dislike").click (e) => this.dislikeElement(e)
+    $(".welcome .tag .remove").click (e) => this.neutralElement(e)
+    $(".welcome .submit").click (e) => this.submit(e)
+
 
 Strata.Welcome =
   bootstrap: ->
-    new ChoiceSelector()
+    # Saved only for tests
+    Strata.Welcome.choiceSelector = new ChoiceSelector()

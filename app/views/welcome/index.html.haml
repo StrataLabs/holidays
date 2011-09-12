@@ -1,20 +1,26 @@
 .welcome
   .likes
-    %textarea
+    %ul.tags
   .choices
-    .choice
-      %span.like like
-      %span.name Choice 1
-      %span.dislike dislike
-    .choice
-      %span.like like
-      %span.name Choice 2
-      %span.dislike dislike
-    .choice
-      %span.like like
-      %span.name Choice 3
-      %span.dislike dislike
+    %ul.tags
+      %li.tag
+        %a.like like
+        %span.tagText Choice 1
+        %a.dislike dislike
+        %a.remove remove
+      %li.tag
+        %a.like like
+        %span.tagText Choice 2
+        %a.dislike dislike
+        %a.remove remove
+      %li.tag
+        %a.like like
+        %span.tagText Choice 3
+        %a.dislike dislike
+        %a.remove remove
   .dislikes
-    %textarea
+    %ul.tags
 :javascript
-  Strata.Welcome.bootstrap();
+  $(document).ready(function() {
+    Strata.Welcome.bootstrap();
+  });

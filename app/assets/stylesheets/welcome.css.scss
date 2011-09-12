@@ -1,20 +1,33 @@
+@mixin hide_like_and_dislike {
+  .tag {
+    a.like { display: none; }
+    a.dislike { display: none; }
+  }
+}
+
+@mixin hide_remove {
+  .tag {
+    a.remove { display: none; }
+  }
+}
+
 .welcome {
   .likes {
     width: 20%;
     float: left;
+    @include hide_like_and_dislike;
   }
 
   .choices {
     float: left;
     text-align: center;
     width: 60%;
-
-    .choice {
-    }
+    @include hide_remove;
   }
 
   .dislikes{
     width: 20%;
     float: left;
+    @include hide_like_and_dislike;
   }
 }

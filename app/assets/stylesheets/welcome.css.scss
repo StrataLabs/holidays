@@ -1,7 +1,9 @@
+@import "mixins.scss";
+
 @mixin hide_like_and_dislike {
   .tag {
-    a.like { display: none; }
-    a.dislike { display: none; }
+    a.like { @include hidden; }
+    a.dislike { @include hidden; }
   }
 }
 
@@ -29,5 +31,9 @@
     width: 20%;
     float: left;
     @include hide_like_and_dislike;
+  }
+
+  #createInquiry {
+    @include hidden;
   }
 }

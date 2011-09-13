@@ -5,6 +5,7 @@ Spork.prefork do
   if( ENV['COVERAGE'] == 'on' )
     require 'simplecov'
     require 'simplecov-rcov'
+
     class SimpleCov::Formatter::MergedFormatter
       def format(result)
          SimpleCov::Formatter::HTMLFormatter.new.format(result)
@@ -20,6 +21,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
+  require 'rspec/http'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 

@@ -7,3 +7,4 @@ tmp/
 /spec/javascripts/compiled
 /coverage
 coverage.data
+.DS_STORE

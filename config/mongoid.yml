@@ -1,13 +1,19 @@
+defaults: &defaults
+  allow_dynamic_keys: true
+
 development:
+  <<: *defaults
   host: localhost
   database: holidays_development
 
 test:
+  <<: *defaults
   host: localhost
   database: holidays_test
 
 # set these environment variables on your prod server
 production:
+  <<: *defaults
   host: localhost
   database: holidays_production
   #host: <%= ENV['MONGOID_HOST'] %>

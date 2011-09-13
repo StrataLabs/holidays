@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Question.create(:name => "main", :text => "Choose your kind of holiday", :possible_responses => ["historic", "museums", "beach", "trekking", "resort", "sightseeing" ])

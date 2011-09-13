@@ -18,6 +18,7 @@ gem 'haml'
 group :test, :development do
   gem 'spork'
   gem "rspec-rails", "~> 2.6"
+  gem "rspec-http"
   gem "factory_girl_rails"
   gem "rb-fsevent"
   gem "guard-coffeescript"
@@ -25,6 +26,7 @@ group :test, :development do
   gem "headless"
   gem "simplecov"
   gem "simplecov-rcov"
+  gem "shoulda-matchers"
 end
 
 # Use unicorn as the web server

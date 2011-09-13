@@ -14,6 +14,7 @@
   .dislikes
     %ul.tags
   %form{:method => "post", :action => inquiries_path, :id => "createInquiry"}
+    =hidden_field_tag "question_id", @question.id
   .submit.clear
     Start Planning
 :javascript

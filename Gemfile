@@ -17,13 +17,14 @@ gem 'haml'
 
 group :test, :development do
   gem 'spork'
-  gem "cover_me"
   gem "rspec-rails", "~> 2.6"
   gem "factory_girl_rails"
   gem "rb-fsevent"
   gem "guard-coffeescript"
   gem "jasmine"
   gem "headless"
+  gem "simplecov"
+  gem "simplecov-rcov"
 end
 
 # Use unicorn as the web server

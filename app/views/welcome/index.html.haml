@@ -1,28 +1,21 @@
 .welcome
+  .title
+    %center= @question.text
   .likes
     %ul.tags
   .neutral
     %ul.tags
+    - @question.possible_responses.each do |response|
       %li.tag
         %a.like like
-        %span.tagText Choice 1
-        %a.dislike dislike
-        %a.remove remove
-      %li.tag
-        %a.like like
-        %span.tagText Choice 2
-        %a.dislike dislike
-        %a.remove remove
-      %li.tag
-        %a.like like
-        %span.tagText Choice 3
+        %span.tagText= response
         %a.dislike dislike
         %a.remove remove
   .dislikes
     %ul.tags
-  %form{method: "post", action: inquiries_path, id: "createInquiry"}
-  .submit
-    Create
+  %form{:method => "post", :action => inquiries_path, :id => "createInquiry"}
+  .submit.clear
+    Start Planning
 :javascript
   $(document).ready(function() {
     Strata.Welcome.bootstrap();

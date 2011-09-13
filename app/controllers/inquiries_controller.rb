@@ -1,6 +1,6 @@
 class InquiriesController < ApplicationController
   def create
-    @inquiry = Inquiry.build(params[:question_id], :likes => params["likes"], :dislikes => params["dislikes"], :neutral => params["neutral"])
+    @inquiry = Inquiry.build(params[:question_id], params[:preferences])
 
     if @inquiry
       redirect_to inquiry_path(@inquiry)
@@ -10,6 +10,7 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    render :text => "foo"
+    @inquiry = Inquiry.find(params[:id])
+    render :text => "<pre>#{YAML.dump(@inquiry)}</pre>"
   end
 end

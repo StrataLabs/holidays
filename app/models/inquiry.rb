@@ -6,7 +6,8 @@ class Inquiry
 
   class << self
     def build(question_id, preferences)
-      question = Question.find(question_id)
+      question = Question.where(:_id => question_id).first
+      return false if question.nil?
       Inquiry.create!(:responses => [Response.build(question, preferences)])
     end
   end

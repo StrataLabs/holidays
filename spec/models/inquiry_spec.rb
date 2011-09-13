@@ -18,7 +18,16 @@ describe Inquiry do
 
       it "creates a response given a question" do
         inquiry = Inquiry.build(question.id, :likes => ["yes"])
-        inquiry.should have(1).response
+        inquiry.should have(1).responses
+      end
+
+      it "returns false if the question_id is an invalid format" do
+        Inquiry.build("foobar", :likes => ["yes"]).should be_false
+      end
+
+      it "returns false if the question id does not point to a question" do
+        inquiry = Factory(:inquiry)
+        Inquiry.build(inquiry.id, :likes => ["yes"]).should be_false
       end
     end
 end

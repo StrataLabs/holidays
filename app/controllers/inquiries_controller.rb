@@ -1,5 +1,6 @@
 class InquiriesController < ApplicationController
   def create
-    render :text => params.to_s
+    Inquiry.create
+    redirect_to "http://google.com"
   end
 end

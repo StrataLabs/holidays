@@ -1,6 +1,10 @@
 class InquiriesController < ApplicationController
   def create
-    Inquiry.create
-    redirect_to "http://google.com"
+    @inquiry = Inquiry.create
+    redirect_to inquiry_path(@inquiry)
+  end
+
+  def show
+    render :text => "foo"
   end
 end

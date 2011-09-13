@@ -11,8 +11,9 @@ describe Response do
       let(:question) { Factory(:question) }
 
       it "saves the newly created inquiry" do
-        Response.build(question)
-        Response.count.should == 1
+        lambda {
+          Response.build(question)
+        }.should change(Response, :count).by(1)
       end
 
       it "creates a response given a question" do

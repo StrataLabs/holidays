@@ -1,4 +1,4 @@
-class ChoiceSelector
+class Strata.ChoiceSelector
   moveElementTo: (container, event) ->
     choice = $(event.target).parents("li")
     $("#{@parent} .#{container} .tags").append(choice)
@@ -33,9 +33,3 @@ class ChoiceSelector
     $("#{@parent} .tag .dislike").click (e) => this.dislikeElement(e)
     $("#{@parent} .tag .remove").click (e) => this.neutralElement(e)
     $("#{@parent} .submit").click (e) => this.submit(e)
-
-
-Strata.ChoiceSelector =
-  bootstrap: (container)->
-    # Saved only for tests
-    Strata.ChoiceSelector.choiceSelector = new ChoiceSelector(container)

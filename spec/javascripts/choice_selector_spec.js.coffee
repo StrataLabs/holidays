@@ -40,3 +40,8 @@ describe 'ChoiceSelector', ->
       form = $("#createInquiry")
       expect(form.find("select[name='preferences[dislikes][]']").val()).toEqual(["Travel"])
       expect(form.find("select[name='preferences[neutral][]']").val()).toEqual(["Fun"])
+
+  describe "dynamic choice", ->
+    it "should updates a dom with new choice when added", ->
+      selector.addChoice("Drinking", "neutral")
+      expect($(".neutral .tag .tagText:contains('Drinking')")).toExist()

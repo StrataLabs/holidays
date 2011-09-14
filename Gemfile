@@ -27,6 +27,7 @@ group :test, :development do
   gem "simplecov"
   gem "simplecov-rcov"
   gem "shoulda-matchers"
+  gem 'capistrano'
 end
 
 # Use unicorn as the web server

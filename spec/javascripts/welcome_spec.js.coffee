@@ -1,7 +1,7 @@
 describe 'Welcome', ->
   beforeEach ->
     loadFixtures("welcome.html")
-    Strata.Welcome.bootstrap("/submit/path")
+    Strata.Welcome.bootstrap(".welcome")
 
   describe 'like and dislike', ->
     it "should move a tag to like section when like is clicked", ->

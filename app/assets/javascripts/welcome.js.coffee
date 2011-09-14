@@ -1,7 +1,7 @@
 class ChoiceSelector
   moveElementTo: (container, event) ->
     choice = $(event.target).parents("li")
-    $(".welcome .#{container} .tags").append(choice)
+    $("#{@parent} .#{container} .tags").append(choice)
 
   likeElement: (e) ->
     this.moveElementTo("likes", e)
@@ -13,12 +13,12 @@ class ChoiceSelector
     this.moveElementTo("neutral", e)
 
   prepareForSubmitting: ->
-    $(".welcome #createInquiry").append(this.createSelectBoxWith("neutral"))
-    $(".welcome #createInquiry").append(this.createSelectBoxWith("likes"))
-    $(".welcome #createInquiry").append(this.createSelectBoxWith("dislikes"))
+    $("#{@parent} #createInquiry").append(this.createSelectBoxWith("neutral"))
+    $("#{@parent} #createInquiry").append(this.createSelectBoxWith("likes"))
+    $("#{@parent} #createInquiry").append(this.createSelectBoxWith("dislikes"))
 
   createSelectBoxWith: (name) ->
-    elements = ($(x).find(".tagText").text() for x in $(".welcome .#{name} .tag"))
+    elements = ($(x).find(".tagText").text() for x in $("#{@parent} .#{name} .tag"))
     selectBox = $("<select name='preferences[#{name}][]' multiple></select>")
     for option in elements
       selectBox.append($("<option selected='selected' value='#{option}'>#{option}</option>"))
@@ -26,16 +26,16 @@ class ChoiceSelector
 
   submit: (e) ->
     this.prepareForSubmitting()
-    $(".welcome #createInquiry").submit()
+    $("#{@parent} #createInquiry").submit()
 
-  constructor: ->
-    $(".welcome .tag .like").click (e) => this.likeElement(e)
-    $(".welcome .tag .dislike").click (e) => this.dislikeElement(e)
-    $(".welcome .tag .remove").click (e) => this.neutralElement(e)
-    $(".welcome .submit").click (e) => this.submit(e)
+  constructor: (@parent) ->
+    $("#{@parent} .tag .like").click (e) => this.likeElement(e)
+    $("#{@parent} .tag .dislike").click (e) => this.dislikeElement(e)
+    $("#{@parent} .tag .remove").click (e) => this.neutralElement(e)
+    $("#{@parent} .submit").click (e) => this.submit(e)
 
 
 Strata.Welcome =
-  bootstrap: ->
+  bootstrap: (container)->
     # Saved only for tests
-    Strata.Welcome.choiceSelector = new ChoiceSelector()
+    Strata.Welcome.choiceSelector = new ChoiceSelector(container)

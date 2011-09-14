@@ -35,7 +35,7 @@ class ChoiceSelector
     $("#{@parent} .submit").click (e) => this.submit(e)
 
 
-Strata.Welcome =
+Strata.ChoiceSelector =
   bootstrap: (container)->
     # Saved only for tests
-    Strata.Welcome.choiceSelector = new ChoiceSelector(container)
+    Strata.ChoiceSelector.choiceSelector = new ChoiceSelector(container)

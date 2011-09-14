@@ -1,7 +1,7 @@
 describe 'Welcome', ->
   beforeEach ->
     loadFixtures("welcome.html")
-    Strata.Welcome.bootstrap(".welcome")
+    Strata.ChoiceSelector.bootstrap(".welcome")
 
   describe 'like and dislike', ->
     it "should move a tag to like section when like is clicked", ->
@@ -22,20 +22,20 @@ describe 'Welcome', ->
 
   describe 'submitting the response', ->
     it "should create inquiry with neutral responses", ->
-      Strata.Welcome.choiceSelector.prepareForSubmitting()
+      Strata.ChoiceSelector.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
       expect(form.find("select[name='preferences[neutral][]']").val()).toEqual(["Travel", "Fun"])
 
     it "should create inquiry with like responses", ->
       $(".neutral .tag:first a.like").click()
-      Strata.Welcome.choiceSelector.prepareForSubmitting()
+      Strata.ChoiceSelector.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
       expect(form.find("select[name='preferences[likes][]']").val()).toEqual(["Travel"])
       expect(form.find("select[name='preferences[neutral][]']").val()).toEqual(["Fun"])
 
     it "should create inquiry with disike responses", ->
       $(".neutral .tag:first a.dislike").click()
-      Strata.Welcome.choiceSelector.prepareForSubmitting()
+      Strata.ChoiceSelector.choiceSelector.prepareForSubmitting()
       form = $("#createInquiry")
       expect(form.find("select[name='preferences[dislikes][]']").val()).toEqual(["Travel"])
       expect(form.find("select[name='preferences[neutral][]']").val()).toEqual(["Fun"])

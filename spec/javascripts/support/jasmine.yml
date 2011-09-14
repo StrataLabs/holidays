@@ -1,5 +1,5 @@
 src_files:
-  - spec/javascripts/compiled/lib/global.js
+  - spec/javascripts/compiled/lib/strata.js
   - spec/javascripts/compiled/lib/**/*.js
 
 # stylesheets

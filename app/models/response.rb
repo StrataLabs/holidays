@@ -4,7 +4,7 @@ class Response
   field :likes, :type => Array
   field :dislikes, :type => Array
   field :neutral, :type => Array
-  embeds_one :question
+  belongs_to :question
 
   validates_presence_of :question
 

@@ -1,2 +1,4 @@
+@import "mixins.scss";
 .footer {clear: both;}
 .clear {clear:both;}
+.hidden {@include hidden;}

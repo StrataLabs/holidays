@@ -27,17 +27,20 @@ describe InquiriesController do
   end
 
   context "GET show" do
+    let(:inquiry) { Factory(:inquiry) }
+    let(:question) { Factory(:question, :name => "foo") }
+
+    before(:each) do
+      Factory(:question_group, :name => "details", :questions => [question])
+    end
+
     it "shows the inquiry" do
-      inquiry = Factory(:inquiry)
       get :show, :id => inquiry.id
       response.should be_ok
       assigns[:inquiry].should == inquiry
     end
 
     it "loads responses under details group" do
-      inquiry = Factory(:inquiry)
-      question = Factory(:question, :name => "foo")
-      group = Factory(:question_group, :name => "details", :questions => [question])
       get :show, :id => inquiry.id
       response.should be_ok
       resp = assigns[:responses].first

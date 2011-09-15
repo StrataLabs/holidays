@@ -24,14 +24,13 @@ Spork.prefork do
   require 'rspec/http'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
+end
 
+Spork.each_run do
   RSpec.configure do |config|
     config.mock_with :rspec
     config.before(:each) do
       ObjectSpace.each_object(Class) { |x| x.destroy_all if x.included_modules.include?(Mongoid::Document) }
     end
   end
-end
-
-Spork.each_run do
 end

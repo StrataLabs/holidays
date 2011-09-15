@@ -5,13 +5,13 @@
       %center.questionTitle
     .likes
       %ul.tags
-        = render :partial => "response_choice", :collection => user_response.likes
+        = render :partial => "shared/response_choice", :collection => user_response.likes
     .neutral
       %ul.tags
-        = render :partial => "response_choice", :collection => user_response.neutral
+        = render :partial => "shared/response_choice", :collection => user_response.neutral
     .dislikes
       %ul.tags
-        = render :partial => "response_choice", :collection => user_response.dislikes
+        = render :partial => "shared/response_choice", :collection => user_response.dislikes
     .submit.clear
       Done
 :javascript

@@ -5,12 +5,7 @@
     %ul.tags
   .neutral
     %ul.tags
-    - @question.possible_responses.each do |response|
-      %li.tag
-        %a.like like
-        %span.tagText= response
-        %a.dislike dislike
-        %a.remove remove
+      = render :partial => "shared/response_choice", :collection => @question.possible_responses
   .dislikes
     %ul.tags
   %form{:method => "post", :action => inquiries_path, :id => "createInquiry"}

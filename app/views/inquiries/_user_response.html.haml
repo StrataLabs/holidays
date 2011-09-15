@@ -1,0 +1,20 @@
+.question{:id => user_response.question_id }
+  %a{:class => "questionLink"}= user_response.question.text
+  .selector{:id => "choices_#{user_response.question_id}"}
+    .title
+      %center.questionTitle
+    .likes
+      %ul.tags
+        = render :partial => "response_choice", :collection => user_response.likes
+    .neutral
+      %ul.tags
+        = render :partial => "response_choice", :collection => user_response.neutral
+    .dislikes
+      %ul.tags
+        = render :partial => "response_choice", :collection => user_response.dislikes
+    .submit.clear
+      Done
+:javascript
+  $(document).ready(function(){
+    var question = new Strata.Question(".#{user_response.question.id}");
+  });

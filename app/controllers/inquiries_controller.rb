@@ -11,6 +11,7 @@ class InquiriesController < ApplicationController
 
   def show
     @inquiry = Inquiry.find(params[:id])
-    @questions = QuestionGroup.where(:name => "details").first.questions
+    questions = QuestionGroup.where(:name => "details").first.questions
+    @responses = questions.collect { |question| @inquiry.response_for_question(question) }
   end
 end

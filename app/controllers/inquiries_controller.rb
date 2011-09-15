@@ -11,6 +11,6 @@ class InquiriesController < ApplicationController
 
   def show
     @inquiry = Inquiry.find(params[:id])
-    render :text => "<pre>#{YAML.dump(@inquiry)}</pre>"
+    @questions = QuestionGroup.where(:name => "details").first.questions
   end
 end

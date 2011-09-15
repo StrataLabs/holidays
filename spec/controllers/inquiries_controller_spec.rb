@@ -33,5 +33,14 @@ describe InquiriesController do
       response.should be_ok
       assigns[:inquiry].should == inquiry
     end
+
+    it "loads questions under details group" do
+      inquiry = Factory(:inquiry)
+      question = Factory(:question, :name => "foo")
+      group = Factory(:question_group, :name => "details", :questions => [question])
+      get :show, :id => inquiry.id
+      response.should be_ok
+      assigns[:questions].should == [question]
+    end
   end
 end

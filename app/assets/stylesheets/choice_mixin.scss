@@ -1,0 +1,31 @@
+@import "mixins.scss";
+
+@mixin hide_like_and_dislike {
+  .tag {
+    a.like { @include hidden; }
+    a.dislike { @include hidden; }
+  }
+}
+
+@mixin hide_remove {
+  .tag {
+    a.remove { display: none; }
+  }
+}
+
+@mixin choice_selector {
+  .likes {
+    float: left;
+    @include hide_like_and_dislike;
+  }
+
+  .neutral {
+    float: left;
+    @include hide_remove;
+  }
+
+  .dislikes{
+    float: left;
+    @include hide_like_and_dislike;
+  }
+}

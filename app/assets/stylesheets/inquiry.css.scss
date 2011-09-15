@@ -1,6 +1,6 @@
 @import "choice_mixin.scss";
 
-.welcome {
+.inquiry {
   @include choice_selector;
 
   .likes {
@@ -14,9 +14,5 @@
 
   .dislikes{
     width: 20%;
-  }
-
-  #createInquiry {
-    @include hidden;
   }
 }

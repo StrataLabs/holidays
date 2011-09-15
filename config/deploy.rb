@@ -7,7 +7,7 @@ set :user, "rails"
 set :use_sudo, false
 set :scm, :git
 set :branch, "master"
-
+set :rails_env, "production"
 set :deploy_via, :remote_cache
 
 task :staging do
@@ -22,7 +22,7 @@ set :default_environment, {
 
 namespace :deploy do
   after "bundle:install" do
-    run "cd #{release_path} && bundle exec rake assets:precompile"
+    run "cd #{release_path} && RAILS_ENV=#{fetch(:rails_env)} bundle exec rake assets:precompile"
   end
 
  task :start do ; end

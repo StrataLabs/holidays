@@ -1,9 +1,9 @@
 class Response
   include Mongoid::Document
 
-  field :likes, :type => Array
-  field :dislikes, :type => Array
-  field :neutral, :type => Array
+  field :likes, :type => Array, :default => []
+  field :dislikes, :type => Array, :default => []
+  field :neutral, :type => Array, :default => []
   belongs_to :question
 
   validates_presence_of :question

@@ -30,4 +30,23 @@ describe Inquiry do
       Inquiry.build(inquiry.id, :likes => ["yes"]).should be_false
     end
   end
+
+  context "response for question" do
+    let (:question) { Factory(:question, :possible_responses => ["Fun", "Activity"]) }
+
+    it "returns a response for a given question" do
+      inquiry = Factory(:inquiry, :responses => [Factory(:response, :question => question, :likes => ["Fun"])])
+      response = inquiry.response_for_question(question)
+      response.likes.should == ["Fun"]
+      response.question.should == question
+    end
+
+    it "builds a new response with all possible responses mapped to neutral if response does not exist" do
+      inquiry = Factory(:inquiry)
+      response = inquiry.response_for_question(question)
+      response.neutral.should == ["Fun", "Activity"]
+      response.likes.should == []
+      response.question.should == question
+    end
+  end
 end

@@ -8,7 +8,7 @@
       = render :partial => "shared/response_choice", :collection => @question.possible_responses
   .dislikes
     %ul.tags
-  %form{:method => "post", :action => inquiries_path, :id => "createInquiry"}
+  =form_tag inquiries_path, :id => "createInquiry" do
     =hidden_field_tag "question_id", @question.id
   .submit.clear
     Start Planning

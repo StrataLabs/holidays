@@ -18,6 +18,13 @@ Spork.prefork do
     end
   end
 
+  RSpec.configure do |config|
+    config.mock_with :rspec
+    config.before(:each) do
+      Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
+    end
+  end
+
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -27,10 +34,4 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  RSpec.configure do |config|
-    config.mock_with :rspec
-    config.before(:each) do
-      ObjectSpace.each_object(Class) { |x| x.destroy_all if x.included_modules.include?(Mongoid::Document) }
-    end
-  end
 end

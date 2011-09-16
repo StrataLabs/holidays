@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
+
 Question.create(:name => "landing", :text => "Choose your kind of holiday", :possible_responses => ["historic", "museums", "beach", "trekking", "resort", "sightseeing" ])
 
 q1 = Question.create(:name => "going_on", :text => "We are going on a", :possible_responses => [

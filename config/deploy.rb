@@ -12,6 +12,10 @@ set :deploy_via, :remote_cache
 
 task :staging do
   role :app, "ec2-50-19-205-182.compute-1.amazonaws.com"
+
+  task :seed do
+    run "cd #{current_path} && RAILS_ENV=#{fetch(:rails_env)} bundle exec rake db:seed"
+  end
 end
 
 set :default_environment, {

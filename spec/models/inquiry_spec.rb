@@ -46,16 +46,4 @@ describe Inquiry do
       response.question.should == question
     end
   end
-
-  context "responding to a question" do
-    let (:question) { Factory(:question, :possible_responses => ["Fun", "Activity"]) }
-    let (:inquiry) { Factory(:inquiry) }
-
-    it "responds to a new question" do
-      inquiry.respond_to_question(question, :likes => ["Fun"])
-
-      reloaded_inquiry = Inquiry.find(inquiry.id)
-      reloaded_inquiry.response_for_question(question).likes.should == ["Fun"]
-    end
-  end
 end

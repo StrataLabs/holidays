@@ -13,5 +13,13 @@ class Response
     def build(question, preferences = {})
       Response.create!(preferences.merge({:question => question }))
     end
+
+    def create_or_update_for_inquiry_id(inquiry_id, question_id, preferences)
+      response = find_or_create_by(:inquiry_id => inquiry_id, :question_id => question_id)
+      [:likes, :dislikes, :neutral].each do |preference_type|
+        response.write_attribute(preference_type, preferences[preference_type])
+      end
+      response
+    end
   end
 end

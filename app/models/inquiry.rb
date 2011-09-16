@@ -21,9 +21,4 @@ class Inquiry
   def response_for_question(question)
     responses.find_by_question_id(question.id) || Response.new(:neutral => question.possible_responses, :question => question)
   end
-
-  def respond_to_question(question, preferences)
-    response = Response.build(question, preferences)
-    responses << response
-  end
 end

@@ -17,6 +17,11 @@ describe Inquiry do
       inquiry.should have(1).responses
     end
 
+    it "saves the newly created response" do
+      inquiry = Inquiry.build(question.id, :likes => ["yes"])
+      Inquiry.find(inquiry.id).should have(1).responses
+    end
+
     it "returns false if the question_id is an invalid format" do
       Inquiry.build("foobar", :likes => ["yes"]).should be_false
     end

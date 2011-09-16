@@ -7,15 +7,14 @@ class Response
   belongs_to :question
   belongs_to :inquiry
 
-  validates_presence_of :question
+  validate do
+    errors.add(:question, "is invalid") unless Question.exists?(:conditions => {:id => question_id})
+    errors.add(:inquiry, "is invalid") unless Inquiry.exists?(:conditions => {:id => inquiry_id})
+  end
 
   class << self
-    def build(question, preferences = {})
-      Response.create!(preferences.merge({:question => question }))
-    end
-
     def create_or_update_for_inquiry_id(inquiry_id, question_id, preferences)
-      response = find_or_create_by(:inquiry_id => inquiry_id, :question_id => question_id)
+      response = find_or_create_by(:inquiry => inquiry_id, :question_id => question_id)
       [:likes, :dislikes, :neutral].each do |preference_type|
         response.write_attribute(preference_type, preferences[preference_type])
       end

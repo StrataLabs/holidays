@@ -14,8 +14,4 @@ class InquiriesController < ApplicationController
     questions = QuestionGroup.where(:name => "details").first.questions
     @responses = questions.collect { |question| @inquiry.response_for_question(question) }
   end
-
-  def preferences
-    render :text => params[:question_id]
-  end
 end

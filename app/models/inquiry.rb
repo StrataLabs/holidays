@@ -12,8 +12,8 @@ class Inquiry
       question = Question.where(:_id => question_id).first
       return false if question.nil?
 
-      inquiry = Inquiry.create!
-      inquiry.responses << Response.build(question, preferences)
+      inquiry = Inquiry.create
+      inquiry.responses << Response.create_or_update_for_inquiry_id(inquiry.id, question.id, preferences)
       inquiry
     end
   end

@@ -1,30 +1,20 @@
 describe Response do
-  [:question].each do |field|
-    it { should validate_presence_of(field) }
-  end
-
   it "is valid when built by factory" do
     Factory.build(:response).should be_valid
   end
 
-  context "factory" do
-    let(:question) { Factory(:question) }
+  it "is invalid if associated question does not exist" do
+    object = Factory(:response)
+    response = Factory.build(:response, :question_id => object.id)
+    response.should_not be_valid
+    response.should have(1).error_on(:question)
+  end
 
-    it "saves the newly created inquiry" do
-      lambda {
-        Response.build(question)
-      }.should change(Response, :count).by(1)
-    end
-
-    it "creates a response given a question" do
-      response = Response.build(question)
-      response.question.should == question
-    end
-
-    it "saves the likes for the response" do
-      response = Response.build(question, :likes => ['yes'])
-      response.likes.should == ['yes']
-    end
+  it "is invalid if associated inquiry does not exist" do
+    object = Factory(:response)
+    response = Factory.build(:response, :inquiry_id => object.id)
+    response.should_not be_valid
+    response.should have(1).error_on(:inquiry)
   end
 
   context "responding to a question" do

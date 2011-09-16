@@ -1,8 +1,4 @@
 describe Inquiry do
-  [:responses].each do |field|
-    it { should validate_presence_of(field) }
-  end
-
   it "is valid when built by factory" do
     Factory.build(:inquiry).should be_valid
   end
@@ -35,7 +31,8 @@ describe Inquiry do
     let (:question) { Factory(:question, :possible_responses => ["Fun", "Activity"]) }
 
     it "returns a response for a given question" do
-      inquiry = Factory(:inquiry, :responses => [Factory(:response, :question => question, :likes => ["Fun"])])
+      inquiry = Factory(:inquiry)
+      inquiry.responses << Factory(:response, :question => question, :likes => ["Fun"])
       response = inquiry.response_for_question(question)
       response.likes.should == ["Fun"]
       response.question.should == question
@@ -47,6 +44,18 @@ describe Inquiry do
       response.neutral.should == ["Fun", "Activity"]
       response.likes.should == []
       response.question.should == question
+    end
+  end
+
+  context "responding to a question" do
+    let (:question) { Factory(:question, :possible_responses => ["Fun", "Activity"]) }
+    let (:inquiry) { Factory(:inquiry) }
+
+    it "responds to a new question" do
+      inquiry.respond_to_question(question, :likes => ["Fun"])
+
+      reloaded_inquiry = Inquiry.find(inquiry.id)
+      reloaded_inquiry.response_for_question(question).likes.should == ["Fun"]
     end
   end
 end

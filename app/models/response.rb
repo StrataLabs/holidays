@@ -5,6 +5,7 @@ class Response
   field :dislikes, :type => Array, :default => []
   field :neutral, :type => Array, :default => []
   belongs_to :question
+  belongs_to :inquiry
 
   validates_presence_of :question
 

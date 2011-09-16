@@ -47,4 +47,17 @@ describe InquiriesController do
       resp.question.should == question
     end
   end
+
+  context "respond to question" do
+    let(:inquiry) { Factory(:inquiry) }
+    let(:question) { Factory(:question, :name => "foo") }
+
+    it "saves a response to a question" do
+      pending do
+        put :preferences, :inquiry_id => inquiry.id, :question_id => question.id, :responses => { :likes => ['yes'] }
+        response.should be_ok
+        Response.first(:conditions => {:question_id => question.id}).likes.should == ["yes"]
+      end
+    end
+  end
 end

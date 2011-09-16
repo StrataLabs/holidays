@@ -30,7 +30,6 @@ describe "Question", ->
       $(".neutral .tag:first a.dislike").click()
       expect(selector.toJson()).toEqual({preferences: {likes:[], neutral:["Fun"], dislikes:["Travel"]} })
 
-
   describe "save", ->
     it "should post a response over ajax", ->
       spyOn($, "ajax").andCallFake (params) ->

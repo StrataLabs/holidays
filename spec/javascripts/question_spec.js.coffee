@@ -34,6 +34,8 @@ describe "Question", ->
     it "should post a response over ajax", ->
       spyOn($, "ajax").andCallFake (params) ->
         expect(params.url).toEqual("/response/save/url")
+        expect(params.data._method).toEqual("put")
+        expect(params.type).toEqual("post")
       $(".submit").click()
       expect($.ajax).wasCalled()
 

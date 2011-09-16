@@ -16,5 +16,5 @@
       Done
 :javascript
   $(document).ready(function(){
-    var question = new Strata.Question(".#{user_response.question.id}");
+    var question = new Strata.Question($("##{user_response.question.id}"), "#{inquiry_question_preferences_path(@inquiry, user_response.question)}");
   });

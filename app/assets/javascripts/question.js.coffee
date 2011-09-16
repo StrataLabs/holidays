@@ -20,7 +20,7 @@ class Strata.Question
     this.moveElementTo("neutral", e)
 
   submit: (e) ->
-    $.post(@response_url, this.toJson())
+    $.post(@response_url, $.extend(this.toJson(), { _method: "put" }))
 
   toJson: ->
     preferences:

@@ -24,11 +24,11 @@ describe "Question", ->
   describe "serialize", ->
     it "should know how to serialize data in json format", ->
       $(".neutral .tag:first a.like").click()
-      expect(selector.toJson()).toEqual({response: {likes:["Travel"], neutral:["Fun"], dislikes:[]} })
+      expect(selector.toJson()).toEqual({preferences: {likes:["Travel"], neutral:["Fun"], dislikes:[]} })
 
     it "serializes all dislikes", ->
       $(".neutral .tag:first a.dislike").click()
-      expect(selector.toJson()).toEqual({response: {likes:[], neutral:["Fun"], dislikes:["Travel"]} })
+      expect(selector.toJson()).toEqual({preferences: {likes:[], neutral:["Fun"], dislikes:["Travel"]} })
 
 
   describe "save", ->
@@ -40,6 +40,6 @@ describe "Question", ->
 
     it "should send all preferences in the ajax query", ->
       spyOn($, "ajax").andCallFake (params) ->
-        expect(params.data.response.neutral).toEqual(["Travel", "Fun"])
+        expect(params.data.preferences.neutral).toEqual(["Travel", "Fun"])
       $(".submit").click()
       expect($.ajax).wasCalled()

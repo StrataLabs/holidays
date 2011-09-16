@@ -23,7 +23,7 @@ class Strata.Question
     $.post(@response_url, this.toJson())
 
   toJson: ->
-    response:
+    preferences:
       likes: ($(x).find(".tagText").text() for x in @parent.find(".likes .tag"))
       dislikes: ($(x).find(".tagText").text() for x in @parent.find(".dislikes .tag"))
       neutral: ($(x).find(".tagText").text() for x in @parent.find(".neutral .tag"))

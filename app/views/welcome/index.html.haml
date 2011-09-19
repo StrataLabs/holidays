@@ -14,5 +14,5 @@
     Start Planning
 :javascript
   $(document).ready(function() {
-    new Strata.ChoiceSelector(".welcome");
+    new Strata.Question($(".welcome"), new Strata.FormPersister($('#createInquiry')));
   });

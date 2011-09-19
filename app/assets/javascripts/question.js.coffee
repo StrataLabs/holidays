@@ -27,9 +27,3 @@ class Strata.Question
       likes: ($(x).find(".tagText").text() for x in @parent.find(".likes .tag"))
       dislikes: ($(x).find(".tagText").text() for x in @parent.find(".dislikes .tag"))
       neutral: ($(x).find(".tagText").text() for x in @parent.find(".neutral .tag"))
-
-class Strata.AsyncPersister
-  constructor: (@resourceUrl) ->
-
-  submit: (json) ->
-    $.post(@resourceUrl, $.extend(json, { _method: "put" }))

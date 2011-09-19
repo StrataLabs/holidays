@@ -19,7 +19,6 @@ class Strata.Question
     this.moveElementTo("neutral", e)
 
   submit: (e) ->
-    console.log("hi")
     @persister.submit(this.toJson())
 
   toJson: ->
@@ -27,3 +26,9 @@ class Strata.Question
       likes: ($(x).find(".tagText").text() for x in @parent.find(".likes .tag"))
       dislikes: ($(x).find(".tagText").text() for x in @parent.find(".dislikes .tag"))
       neutral: ($(x).find(".tagText").text() for x in @parent.find(".neutral .tag"))
+
+  hide: ->
+    @parent.find(".selector").addClass("hidden")
+
+  show: ->
+    @parent.find(".selector").removeClass("hidden")

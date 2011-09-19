@@ -1,17 +1,18 @@
 .welcome
-  .title
-    %center= @question.text
-  .likes
-    %ul.tags
-  .neutral
-    %ul.tags
-      = render :partial => "shared/response_choice", :collection => @question.possible_responses
-  .dislikes
-    %ul.tags
-  =form_tag inquiries_path, :id => "createInquiry" do
-    =hidden_field_tag "question_id", @question.id
-  .submit.clear
-    Start Planning
+  .selector{:id => "choices_#{user_response.question_id}"}
+    .title
+      %center= @question.text
+    .likes
+      %ul.tags
+    .neutral
+      %ul.tags
+        = render :partial => "shared/response_choice", :collection => @question.possible_responses
+    .dislikes
+      %ul.tags
+    =form_tag inquiries_path, :id => "createInquiry" do
+      =hidden_field_tag "question_id", @question.id
+    .submit.clear
+      Start Planning
 :javascript
   $(document).ready(function() {
     new Strata.Question($(".welcome"), new Strata.FormPersister($('#createInquiry')));

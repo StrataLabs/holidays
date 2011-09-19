@@ -44,3 +44,13 @@ describe "Question", ->
         expect(params.data.preferences.neutral).toEqual(["Travel", "Fun"])
       $(".submit").click()
       expect($.ajax).wasCalled()
+
+  describe "show and hide", ->
+    it "should hide the selectors", ->
+      selector.hide()
+      expect($(".selector")).toHaveClass("hidden")
+
+    it "shows the selectors", ->
+      selector.hide()
+      selector.show()
+      expect($(".selector")).not.toHaveClass("hidden")

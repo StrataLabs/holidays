@@ -36,5 +36,14 @@ describe Response do
       reloaded_inquiry.should have(1).responses
       reloaded_inquiry.response_for_question(question).dislikes.should == ["Activity"]
     end
+
+    it "does not create a new response if it already exists" do
+      Factory(:response, :question => question, :inquiry => inquiry)
+
+      lambda {
+        response = Response.create_or_update_for_inquiry_id(inquiry.id, question.id, :dislikes => ["Activity"])
+        response.save!
+      }.should_not change(Response, :count)
+    end
   end
 end

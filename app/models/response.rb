@@ -14,7 +14,7 @@ class Response
 
   class << self
     def create_or_update_for_inquiry_id(inquiry_id, question_id, preferences)
-      response = find_or_create_by(:inquiry => inquiry_id, :question_id => question_id)
+      response = find_or_create_by(:inquiry_id => inquiry_id, :question_id => question_id)
       [:likes, :dislikes, :neutral].each do |preference_type|
         response.write_attribute(preference_type, preferences[preference_type])
       end

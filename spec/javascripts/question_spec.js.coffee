@@ -2,7 +2,7 @@ describe "Question", ->
   selector = null
   beforeEach ->
     loadFixtures("choice_selector.html")
-    selector = new Strata.Question($(".welcome"), "/response/save/url")
+    selector = new Strata.Question($(".welcome"), new Strata.AsyncPersister("/response/save/url"))
 
   describe 'like and dislike', ->
     it "should move a tag to like section when like is clicked", ->

@@ -18,17 +18,17 @@ Spork.prefork do
     end
   end
 
+  ENV["RAILS_ENV"] ||= 'test'
+  require File.expand_path("../../config/environment", __FILE__)
+  require 'rspec/rails'
+  require 'rspec/http'
+
   RSpec.configure do |config|
     config.mock_with :rspec
     config.before(:each) do
       Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
     end
   end
-
-  ENV["RAILS_ENV"] ||= 'test'
-  require File.expand_path("../../config/environment", __FILE__)
-  require 'rspec/rails'
-  require 'rspec/http'
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 end

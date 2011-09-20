@@ -8,13 +8,13 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'jquery-rails'
+gem "jquery-rails", "~> 1.0.13"
 
-gem 'settingslogic'
-gem 'bson_ext'
-gem "mongoid"
+gem "settingslogic", "~> 2.0.6"
+gem "bson_ext", "~> 1.3.1"
+gem "mongoid", "~> 2.2.0"
 gem "mongoid-history", "~> 0.1.4"
-gem 'haml'
+gem "haml", "~> 3.1.2"
 
 group :test, :development do
   gem 'spork'

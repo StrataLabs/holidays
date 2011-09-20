@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'settingslogic'
 gem 'bson_ext'
 gem "mongoid"
+gem "mongoid-history", "~> 0.1.4"
 gem 'haml'
 
 group :test, :development do

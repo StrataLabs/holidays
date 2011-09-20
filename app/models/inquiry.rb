@@ -1,5 +1,7 @@
 class Inquiry
   include Mongoid::Document
+  include Mongoid::History::Trackable
+  track_history
 
   has_many :responses do
     def find_by_question_id(question_id)

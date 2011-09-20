@@ -1,5 +1,7 @@
 class Response
   include Mongoid::Document
+  include Mongoid::History::Trackable
+  track_history
 
   field :likes, :type => Array, :default => []
   field :dislikes, :type => Array, :default => []

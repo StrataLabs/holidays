@@ -14,7 +14,3 @@
         = render :partial => "shared/response_choice", :collection => user_response.dislikes
     .submit.clear
       Done
-:javascript
-  $(document).ready(function(){
-    var question = new Strata.Question($("##{user_response.question.id}"), new Strata.AsyncPersister("#{inquiry_question_preferences_path(@inquiry, user_response.question)}"));
-  });

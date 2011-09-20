@@ -45,6 +45,13 @@ describe "Question", ->
       $(".submit").click()
       expect($.ajax).wasCalled()
 
+    it "triggers an event on saving the question", ->
+      spyOnEvent(selector.events, 'questionSave')
+      spyOn($, "ajax").andCallFake (params) ->
+        params.success()
+      $(".submit").click()
+      expect("questionSave").toHaveBeenTriggeredOn(selector.events)
+
   describe "show and hide", ->
     it "should hide the selectors", ->
       selector.hide()

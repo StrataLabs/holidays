@@ -11,3 +11,5 @@ class Strata.QuestionGroup
   add: (question)->
     @questions.push(question)
     question.hide() if @questions.length > 1
+    question.events.bind "questionSave", =>
+      this.next()

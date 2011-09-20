@@ -4,6 +4,7 @@ class Strata.Question
     @parent.find(".tag .dislike").click (e) => this.dislikeElement(e)
     @parent.find(".tag .remove").click (e) => this.neutralElement(e)
     @parent.find(".submit").click (e) => this.submit(e)
+    @events = $({})
 
   moveElementTo: (container, event) ->
     choice = $(event.target).parents("li")
@@ -19,7 +20,8 @@ class Strata.Question
     this.moveElementTo("neutral", e)
 
   submit: (e) ->
-    @persister.submit(this.toJson())
+    @persister.submit this.toJson(), =>
+      @events.trigger("questionSave")
 
   toJson: ->
     preferences:

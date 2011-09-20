@@ -4,24 +4,26 @@ describe "QuestionGroup", ->
   beforeEach ->
     group = new Strata.QuestionGroup()
 
-  stubQuestion = ->
+  stubQuestion = (name) ->
     question =
+      name: name
       show: -> "foo"
       hide: -> "bar"
+      events: $({})
     spyOn(question, "show")
     spyOn(question, "hide")
     question
 
   it "contains a list of questions", ->
-    group.add(new Strata.Question($(".welcome_1"), "persister_1"))
-    group.add(new Strata.Question($(".welcome_2"), "persister_2"))
+    group.add(stubQuestion())
+    group.add(stubQuestion())
     expect(group.questions.length).toEqual(2)
 
   it "preserves the order of questions in the group", ->
-    group.add(new Strata.Question($(".welcome_1"), "persister_1"))
-    group.add(new Strata.Question($(".welcome_2"), "persister_2"))
-    expect(group.questions[0].persister).toEqual("persister_1")
-    expect(group.questions[1].persister).toEqual("persister_2")
+    group.add(stubQuestion(1))
+    group.add(stubQuestion(2))
+    expect(group.questions[0].name).toEqual(1)
+    expect(group.questions[1].name).toEqual(2)
 
   it "does not hide the first question when adding", ->
     question = stubQuestion()
@@ -37,5 +39,12 @@ describe "QuestionGroup", ->
     group.add(q1 = stubQuestion())
     group.add(q2 = stubQuestion())
     group.next()
+    expect(q1.hide).toHaveBeenCalled()
+    expect(q2.show).toHaveBeenCalled()
+
+  it "shows the next question when questionSave is triggered", ->
+    group.add(q1 = stubQuestion())
+    group.add(q2 = stubQuestion())
+    q1.events.trigger("questionSave")
     expect(q1.hide).toHaveBeenCalled()
     expect(q2.show).toHaveBeenCalled()

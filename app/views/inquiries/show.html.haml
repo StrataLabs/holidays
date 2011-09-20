@@ -2,3 +2,9 @@
   .questions
     = render :partial => "user_response", :collection => @responses
 
+%script{:type => "text/javascript"}
+  $(document).ready(function(){
+  var questionGroup = new Strata.QuestionGroup();
+  - @responses.each do |user_response|
+    questionGroup.add(new Strata.Question($("##{user_response.question.id}"), new Strata.AsyncPersister("#{inquiry_question_preferences_path(@inquiry, user_response.question)}")));
+  });

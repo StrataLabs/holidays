@@ -19,5 +19,5 @@ class Strata.FormPersister
 class Strata.AsyncPersister
   constructor: (@resourceUrl) ->
 
-  submit: (json) ->
-    $.post(@resourceUrl, $.extend(json, { _method: "put" }))
+  submit: (json, success = ->) ->
+    $.post(@resourceUrl, $.extend(json, { _method: "put" }), success)

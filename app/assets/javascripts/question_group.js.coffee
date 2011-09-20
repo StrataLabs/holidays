@@ -4,6 +4,7 @@ class Strata.QuestionGroup
     @currentIndex = 0
 
   next: ->
+    return if @currentIndex == @questions.length - 1
     @questions[@currentIndex].hide()
     @currentIndex++
     @questions[@currentIndex].show()

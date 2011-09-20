@@ -42,6 +42,11 @@ describe "QuestionGroup", ->
     expect(q1.hide).toHaveBeenCalled()
     expect(q2.show).toHaveBeenCalled()
 
+  it "stays on last question when called next", ->
+    group.add(q1 = stubQuestion())
+    group.next()
+    expect(q1.hide).not.toHaveBeenCalled()
+
   it "shows the next question when questionSave is triggered", ->
     group.add(q1 = stubQuestion())
     group.add(q2 = stubQuestion())

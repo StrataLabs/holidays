@@ -5,7 +5,7 @@ class InquiriesController < ApplicationController
     if @inquiry
       redirect_to inquiry_path(@inquiry)
     else
-      head :status => 422
+      head :status => :unprocessable_entity
     end
   end
 

@@ -7,6 +7,8 @@ class Inquiry
     end
   end
 
+  embeds_one :detail
+
   class << self
     def build(question_id, preferences)
       question = Question.where(:_id => question_id).first

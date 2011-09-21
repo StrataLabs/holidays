@@ -1,0 +1,22 @@
+.detail
+  .number_of_people
+    Number of People:
+    -#TODO: Make this ref data?
+    = select "detail", "number_of_people", [2,3,4,5,6,7,8,9,10], :prompt => "Doesn't Matter"
+  .duration
+    Duration
+    -#TODO: Make this ref data?
+    = select "detail", "duration", [ '1 day', '< 1 week', '2 weeks' ], :prompt => "Doesn't Matter"
+  .time_of_travel
+    Time of Travel
+    -#TODO: Make this ref data?
+    = select "detail", "time_of_travel", ['January', 'February', 'March', 'April'], :prompt => "Doesn't Matter"
+  .group_types
+    Group Type
+    -#TODO: Make this ref data?
+    = select "detail", "group_type", ["Family", "Couple", "Friends"], :prompt => "Doesn't Matter"
+  .edit
+    Edit
+  .submit
+    Submit
+  = inquiry_detail_path(@inquiry)

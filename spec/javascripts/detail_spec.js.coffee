@@ -21,3 +21,13 @@ describe "Detail", ->
           group_type: "Family"
       $(".submit").click()
       expect($.ajax).toHaveBeenCalled()
+
+    describe "disable select boxes", ->
+      it "disables all select boxes by default", ->
+        ["number_of_people", "duration", "time_of_travel", "group_type"].forEach (sel) ->
+          expect($("#detail_#{sel}")).toHaveAttr("disabled")
+
+      it "becomes enabled on clicking edit", ->
+        $(".edit").click()
+        ["number_of_people", "duration", "time_of_travel", "group_type"].forEach (sel) ->
+          expect($("#detail_#{sel}")).not.toHaveAttr("disabled")

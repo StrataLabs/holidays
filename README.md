@@ -7,6 +7,7 @@ Domain Terminology
 * Inquiry => A request from a user for a holiday. This encapsulates all information the user has provided, and the responses
 * Response => This is the answer a user has provided for a particular question within an inquiry. This contains the user's preferences
 * Preferences => This is an alias for the triplet of likes, dislikes and neutral. ie, things the user likes and dislikes
+* InquiryDetails => This is the general info about the trip. Group, General info about when to travel, etc...
 
 Magic Ref Data
 ==============

@@ -19,4 +19,7 @@
     Edit
   .submit
     Submit
-  = inquiry_detail_path(@inquiry)
+:javascript
+  $(document).ready(function() {
+    new Strata.Detail($(".detail"), "#{inquiry_detail_path(@inquiry)}");
+  });

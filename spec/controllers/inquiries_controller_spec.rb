@@ -46,5 +46,18 @@ describe InquiriesController do
       resp = assigns[:responses].first
       resp.question.should == question
     end
+
+    it "shows the correct details" do
+      inquiry.create_detail
+      get :show, :id => inquiry.id
+      response.should be_ok
+      assigns[:inquiry_detail].should == inquiry.detail
+    end
+
+    it "assigns a new detail if none is found" do
+      get :show, :id => inquiry.id
+      response.should be_ok
+      assigns[:inquiry_detail].should_not be_nil
+    end
   end
 end

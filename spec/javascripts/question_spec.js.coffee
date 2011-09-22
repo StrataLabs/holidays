@@ -61,3 +61,9 @@ describe "Question", ->
       selector.hide()
       selector.show()
       expect($(".selector")).not.toHaveClass("hidden")
+
+  describe "add a tag", ->
+    it "adds the entered choice into neutral category", ->
+      $(".add_keywords").val "goa"
+      $(".create_tag").click()
+      expect($(".neutral .tag .tagText:contains('goa')")).toExist()

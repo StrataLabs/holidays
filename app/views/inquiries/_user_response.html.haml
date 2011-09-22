@@ -5,6 +5,8 @@
       %center.questionTitle
     - if user_response.question.allow_custom_responses
       %input.add_keywords
+      .create_tag
+        Add Tag
     .likes
       %ul.tags
         = render :partial => "shared/response_choice", :collection => user_response.likes

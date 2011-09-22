@@ -1,9 +1,10 @@
 class Strata.Question
   constructor: (@parent, @persister) ->
-    @parent.find(".tag .like").click (e) => this.likeElement(e)
-    @parent.find(".tag .dislike").click (e) => this.dislikeElement(e)
-    @parent.find(".tag .remove").click (e) => this.neutralElement(e)
-    @parent.find(".submit").click (e) => this.submit(e)
+    @parent.find(".tag .like").live "click", (e) => this.likeElement(e)
+    @parent.find(".tag .dislike").live "click", (e) => this.dislikeElement(e)
+    @parent.find(".tag .remove").live "click", (e) => this.neutralElement(e)
+    @parent.find(".submit").click  (e) => this.submit(e)
+    @parent.find(".create_tag").click (e) => this.createTag(e)
     @events = $({})
 
   moveElementTo: (container, event) ->
@@ -34,3 +35,15 @@ class Strata.Question
 
   show: ->
     @parent.find(".selector").removeClass("hidden")
+
+  createTag: ->
+    li = this.buildTagLi(@parent.find(".add_keywords").val())
+    @parent.find(".neutral .tags").append(li)
+
+  buildTagLi: (text) ->
+    li = $("<li class='tag'></li>")
+    li.append($("<a class='like'>like</a>"))
+    li.append($("<span class='tagText'>#{text}</span>"))
+    li.append($("<a class='dislike'>dislike</a>"))
+    li.append($("<a class='remove'>remove</a>"))
+    li

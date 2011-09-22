@@ -1,6 +1,7 @@
 class DetailsController < ApplicationController
   def create
-    if Detail.build!(params[:inquiry_id], params[:detail])
+    detail =  Detail.build!(params[:inquiry_id], params[:detail])
+    if detail.valid?
       head :ok
     else
       head :status => :unprocessable_entity

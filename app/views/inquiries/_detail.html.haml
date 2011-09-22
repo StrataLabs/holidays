@@ -1,16 +1,16 @@
 .detail
   .number_of_people
     Number of People:
-    = select_for_detail @inquiry_detail, :number_of_people, Detail.NUMBER_OF_PEOPLE
+    = select_for_detail @inquiry_detail, :number_of_people, Detail::NUMBER_OF_PEOPLE
   .duration
     Duration
-    = select_for_detail @inquiry_detail, :duration, Detail.DURATION
+    = select_for_detail @inquiry_detail, :duration, Detail::DURATION
   .time_of_travel
     Time of Travel
-    = select_for_detail @inquiry_detail, :time_of_travel, Detail.TIME_OF_TRAVEL
+    = select_for_detail @inquiry_detail, :time_of_travel, Detail::TIME_OF_TRAVEL
   .group_types
     Group Type
-    = select_for_detail @inquiry_detail, :group_type, Detail.GROUP_TYPE
+    = select_for_detail @inquiry_detail, :group_type, Detail::GROUP_TYPE
   .edit
     Edit
   .submit

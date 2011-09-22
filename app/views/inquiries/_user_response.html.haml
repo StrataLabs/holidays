@@ -3,6 +3,8 @@
   .selector{:id => "choices_#{user_response.question_id}"}
     .title
       %center.questionTitle
+    - if user_response.question.allow_custom_responses
+      %input.add_keywords
     .likes
       %ul.tags
         = render :partial => "shared/response_choice", :collection => user_response.likes

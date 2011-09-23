@@ -67,3 +67,18 @@ describe "Question", ->
       $(".add_keywords").val "goa"
       $(".create_tag").click()
       expect($(".neutral .tag .tagText:contains('goa')")).toExist()
+
+    it "clears the keyword box after adding", ->
+      $(".add_keywords").val "goa"
+      $(".create_tag").click()
+      expect($(".add_keywords").val()).toEqual("")
+
+    it "does not add an empty keyword", ->
+      $(".add_keywords").val ""
+      $(".create_tag").click()
+      expect($(".tag").length).toEqual(2)
+
+    it "does not add a duplicate keyword", ->
+      $(".add_keywords").val "Travel"
+      $(".create_tag").click()
+      expect($(".tag").length).toEqual(2)

@@ -24,11 +24,14 @@ class Strata.Question
     @persister.submit this.toJson(), =>
       @events.trigger("questionSave")
 
+  getChoices: (category) ->
+    ($(x).find(".tagText").text() for x in @parent.find(".#{category} .tag"))
+
   toJson: ->
     preferences:
-      likes: ($(x).find(".tagText").text() for x in @parent.find(".likes .tag"))
-      dislikes: ($(x).find(".tagText").text() for x in @parent.find(".dislikes .tag"))
-      neutral: ($(x).find(".tagText").text() for x in @parent.find(".neutral .tag"))
+      likes: this.getChoices("likes")
+      dislikes: this.getChoices("dislikes")
+      neutral: this.getChoices("neutral")
 
   hide: ->
     @parent.find(".selector").addClass("hidden")
@@ -36,9 +39,23 @@ class Strata.Question
   show: ->
     @parent.find(".selector").removeClass("hidden")
 
+  allChoices: ->
+    [].concat(this.getChoices("likes"), this.getChoices("dislikes"), this.getChoices("neutral"))
+
+  choiceCanBeAdded: (keyword) ->
+    return false unless keyword
+    return false unless $.inArray(keyword, this.allChoices()) == -1
+    true
+
   createTag: ->
-    li = this.buildTagLi(@parent.find(".add_keywords").val())
-    @parent.find(".neutral .tags").append(li)
+    addKeywordBox = @parent.find(".add_keywords")
+    keyword = addKeywordBox.val()
+    addKeywordBox.val(null)
+
+    if (this.choiceCanBeAdded(keyword))
+      li = this.buildTagLi(keyword)
+      @parent.find(".neutral .tags").append(li)
+
 
   buildTagLi: (text) ->
     li = $("<li class='tag'></li>")

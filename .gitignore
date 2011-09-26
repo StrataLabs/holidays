@@ -9,3 +9,4 @@ tmp/
 coverage.data
 .DS_STORE
 tags
+oauthkeys.yml

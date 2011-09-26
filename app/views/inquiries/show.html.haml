@@ -2,6 +2,7 @@
   = render :partial => "detail"
   .questions
     = render :partial => "user_response", :collection => @responses
+  = link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
 
 %script{:type => "text/javascript"}
   $(document).ready(function(){

@@ -1,5 +1,5 @@
 module ApplicationHelper
-  def authorize_path(provider)
-    "#{root_path}auth/#{provider}"
+  def authorize_path(provider, origin)
+    "#{root_path}auth/#{provider}?origin=#{origin}"
   end
 end

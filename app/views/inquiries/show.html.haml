@@ -2,7 +2,7 @@
   = render :partial => "detail"
   .questions
     = render :partial => "user_response", :collection => @responses
-  = link_to "Sign in with Facebook", authorize_path(:facebook)
+  = link_to "Sign in with Facebook", authorize_path(:facebook, inquiry_set_user_path(@inquiry))
 
 %script{:type => "text/javascript"}
   $(document).ready(function(){

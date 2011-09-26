@@ -12,10 +12,14 @@ class InquiriesController < ApplicationController
   end
 
   def show
-    @inquiry = Inquiry.find(params[:id])
-    questions = QuestionGroup.where(:name => "details").first.questions
-    @responses = questions.collect { |question| @inquiry.response_for_question(question) }
-    @inquiry_detail = @inquiry.detail || Detail.new
+    if mongo_ids_valid? params[:id] => Inquiry
+      @inquiry = Inquiry.find(params[:id])
+      questions = QuestionGroup.where(:name => "details").first.questions
+      @responses = questions.collect { |question| @inquiry.response_for_question(question) }
+      @inquiry_detail = @inquiry.detail || Detail.new
+    else
+      render :status => :not_found, :text => "Inquiry not found"
+    end
   end
 
   def set_user

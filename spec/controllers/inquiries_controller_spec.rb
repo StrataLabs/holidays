@@ -40,6 +40,11 @@ describe InquiriesController do
       assigns[:inquiry].should == inquiry
     end
 
+    it "returns not found if the inquiry id is invalid" do
+      get :show, :id => question.id
+      response.should be_not_found
+    end
+
     it "loads responses under details group" do
       get :show, :id => inquiry.id
       response.should be_ok

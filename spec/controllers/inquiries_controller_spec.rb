@@ -72,12 +72,13 @@ describe InquiriesController do
       Inquiry.find(inquiry.id).user.uid.should == "foo"
     end
 
-    it "returns 422 if the user_id is not set" do
+    it "redirects to root_url if the user_id is not set" do
       get :set_user, :inquiry_id => inquiry.id
-      response.should be_unprocessable_entity
+      response.should redirect_to root_path
     end
 
     it "returns 422 if the inquiry_id is invalid" do
+      session[:user_id] = user.id
       get :set_user, :inquiry_id => user.id
       response.should be_unprocessable_entity
     end

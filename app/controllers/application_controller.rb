@@ -13,4 +13,10 @@ class ApplicationController < ActionController::Base
   def mongo_ids_valid?(hash)
     hash.all? { |id, clazz| clazz.exists? :conditions => {:_id => id } }
   end
+
+  def redirect_if_not_logged_in
+    if current_user.nil?
+      redirect_to root_path
+    end
+  end
 end

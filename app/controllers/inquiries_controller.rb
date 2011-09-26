@@ -1,4 +1,6 @@
 class InquiriesController < ApplicationController
+  before_filter :redirect_if_not_logged_in, :only => :set_user
+
   def create
     @inquiry = Inquiry.build(params[:question_id], params[:preferences])
 
@@ -17,7 +19,7 @@ class InquiriesController < ApplicationController
   end
 
   def set_user
-    if mongo_ids_valid? session[:user_id] => User, params[:inquiry_id] => Inquiry
+    if mongo_ids_valid? params[:inquiry_id] => Inquiry
       inquiry = Inquiry.find(params[:inquiry_id])
       inquiry.user = current_user
       inquiry.save

@@ -1,0 +1,16 @@
+require 'spec_helper'
+
+describe SessionsController do
+  describe "log in via facebook" do
+    before(:each) do
+      request.env["omniauth.auth"] = { "provider" => "facebook", "uid" => "uid", "user_info" => { "name" => "Full Name", "email" => "foo@bar.com" } }
+    end
+
+    it "creates a user from facebook OAuth" do
+      get :facebook
+      response.should be_ok
+      user = User.first(:conditions => {:provider => "facebook", :uid => "uid"})
+      user.name.should == "Full Name"
+    end
+  end
+end

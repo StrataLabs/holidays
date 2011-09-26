@@ -5,6 +5,8 @@ Holidays::Application.routes.draw do
     resource 'detail', :only => [:create]
   end
 
-  match "/auth/:provider/callback" => "sessions#create"
+  [:facebook].each do |provider|
+    match "/auth/#{provider}/callback" => "sessions##{provider}"
+  end
   #match "/signout" => "sessions#destroy", :as => :signout
 end

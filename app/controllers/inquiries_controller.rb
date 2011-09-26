@@ -15,4 +15,15 @@ class InquiriesController < ApplicationController
     @responses = questions.collect { |question| @inquiry.response_for_question(question) }
     @inquiry_detail = @inquiry.detail || Detail.new
   end
+
+  def set_user
+    if mongo_ids_valid? session[:user_id] => User, params[:inquiry_id] => Inquiry
+      inquiry = Inquiry.find(params[:inquiry_id])
+      inquiry.user = current_user
+      inquiry.save
+      render :text => "Successfully logged in as #{inquiry.user.name} and saved in #{inquiry}"
+    else
+      head :unprocessable_entity
+    end
+  end
 end

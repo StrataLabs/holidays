@@ -60,4 +60,26 @@ describe InquiriesController do
       assigns[:inquiry_detail].should_not be_nil
     end
   end
+
+  describe "save user" do
+    let(:inquiry) { Factory(:inquiry) }
+    let(:user) { Factory(:user, :uid => "foo") }
+
+    it "saves the current user" do
+      session[:user_id] = user.id
+      get :set_user, :inquiry_id => inquiry.id
+      response.should be_ok
+      Inquiry.find(inquiry.id).user.uid.should == "foo"
+    end
+
+    it "returns 422 if the user_id is not set" do
+      get :set_user, :inquiry_id => inquiry.id
+      response.should be_unprocessable_entity
+    end
+
+    it "returns 422 if the inquiry_id is invalid" do
+      get :set_user, :inquiry_id => user.id
+      response.should be_unprocessable_entity
+    end
+  end
 end

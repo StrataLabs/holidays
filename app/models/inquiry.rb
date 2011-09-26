@@ -8,6 +8,7 @@ class Inquiry
   end
 
   embeds_one :detail
+  belongs_to :user
 
   class << self
     def build(question_id, preferences)

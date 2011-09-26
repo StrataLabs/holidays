@@ -18,4 +18,20 @@ describe ApplicationController do
     end
   end
 
+  context "validate mongoid id" do
+    let(:user) { Factory(:user) }
+    let(:inquiry) { Factory(:inquiry) }
+
+    it "validates all mongo ids" do
+      controller.mongo_ids_valid?(user.id => User, inquiry.id => Inquiry).should be_true
+    end
+
+    it "invalidates when mongo id is not found" do
+      controller.mongo_ids_valid?(user.id => Inquiry).should be_false
+    end
+
+    it "invalidates when mongo id is invalid" do
+      controller.mongo_ids_valid?(user.id => Inquiry).should be_false
+    end
+  end
 end

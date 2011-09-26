@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= User.where(:_id => session[:user_id]).first
   end
+
+  def mongo_ids_valid?(hash)
+    hash.all? { |id, clazz| clazz.exists? :conditions => {:_id => id } }
+  end
 end

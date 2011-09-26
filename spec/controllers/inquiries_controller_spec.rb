@@ -42,7 +42,7 @@ describe InquiriesController do
 
     it "returns not found if the inquiry id is invalid" do
       get :show, :id => question.id
-      response.should be_not_found
+      response.should be_unprocessable_entity
     end
 
     it "loads responses under details group" do

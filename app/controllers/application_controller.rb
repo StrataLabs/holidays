@@ -10,13 +10,17 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.where(:_id => session[:user_id]).first
   end
 
-  def mongo_ids_valid?(hash)
-    hash.all? { |id, clazz| clazz.exists? :conditions => {:_id => id } }
-  end
-
   def redirect_if_not_logged_in
     if current_user.nil?
       redirect_to root_path
+    end
+  end
+
+  def validate_ids_in_params
+    validator = MongoidIdValidator.new(self.class.name.gsub("Controller", "").singularize)
+    invalid = validator.first_invalid(params)
+    if invalid
+      render :status => :unprocessable_entity, :text => "Invalid #{invalid}"
     end
   end
 end

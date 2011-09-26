@@ -28,7 +28,6 @@ Spork.prefork do
     config.before(:each) do
       Mongoid.master.collections.select { |c| c.name != 'system.indexes' }.each(&:drop)
     end
-    config.include Devise::TestHelpers, :type => :controller
   end
 
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}

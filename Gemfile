@@ -15,7 +15,6 @@ gem 'bson_ext'
 gem "mongoid"
 gem 'haml'
 gem 'omniauth', "~> 0.3"
-gem 'devise', "~> 1.4.7"
 
 group :test, :development do
   gem 'spork'
